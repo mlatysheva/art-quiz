@@ -1,77 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Art Quiz</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
-</head>
-<body>
-  <main>
-    <div class="header">
-      <h2>Art Quiz</h2>
-    </div>
-    <div class="main">
-      <div class="final">
-        <h3>You answered all of the questions!</h3>
-        <p>Score: </p><p class="score"></p>
-        <h4>Want to try it again?</h4>
-        <button id="again" class="submit">Again</button>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Quiz</title>
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+  </head>
+  <body>
+    <main>
+      <div class="page main-screen">
+        <div data-page="settings-page" class="settings-icon page-button"></div>
+        <h1 class="quiz-title">Art Quiz</h1>
+        <button data-page="artists-page" class="page-button">Artists</button>
+        <button data-page="paintings-page" class="page-button">Paintings</button>
       </div>
-      <div class="quiz">
-        <div class="count">
-          <p class="current">0</p><p style="margin-left:40px"> / </p><p class="total"></p>
+      <!-- Settings screen -->
+      <div class="page settings-page hide">        
+        <div data-page="main-screen" class="back-arrow page-button">
+          <span class="settings-title">Settings</span>
         </div>
-        <h3 id="question"></h3>
-        <label id="a1" class="container">
-          <input type="radio" checked="checked" name="radio">
-          <span class="checkmark"></span>
-        </label>
-        <label id="a2" class="container">
-          <input type="radio" name="radio">
-          <span class="checkmark"></span>
-        </label>
-        <label id="a3" class="container">
-          <input type="radio" name="radio">
-          <span class="checkmark"></span>
-        </label>
-        <label id="a4" class="container">
-          <input type="radio" name="radio">
-          <span class="checkmark"></span>
-        </label>
-        <button id="next" class="submit">Submit</button>
+        <div class="settings">
+          <label for="volume" class="large-font">Volume</label>
+          <div class="volume-controls">
+            <div class="volume-mute"></div>
+            <input type="range">
+            <div class="volume-on"></div>
+          </div>
+          <div class="time-settings">
+            <p class="large-font">Set time to complete?</p>
+            <div class="No-Yes-Time smaller-font">
+              <span>No</span>
+              <label class="switch">                            
+                <input type="checkbox">
+                <span class="slider round"></span>              
+              </label>
+              <span>Yes</span>
+            </div>
+            <p class="smaller-font time-to-complete">Seconds to answer</p>
+            <div class="set-time-section">                        
+              
+              <button class="time-button time-minus-button">&minus;</button>
+              <input class="seconds-input" id="seconds-to-answer" type="number" min=5 max=30 step="5" value="5">
+              <button class="time-button time-plus-button">+</button>
+            </div>
+          </div>
+          <div class="settings-buttons">
+            <button class="settings-button reset-button">Reset</button>
+            <button class="settings-button save-button">Save</button>
+          </div>
+        </div>
       </div>
-      <div class="settings">
-        <h3 style="text-align: center;">Set up your Quiz!</h3>
-        <label for="category">Category</label>
-        <select name="category" id="category">
-          <option value="9">Artists</option>
-          <option value="27">Paintings</option>
-        </select>
-        <div class="mt30">
-          <label for="difficulty">Difficulty</label>
-          <label class="container" style="display: inline; margin-left: 30px;">Easy
-            <input type="radio" name="radio" id="easy">
-            <span class="checkmark" style="margin-top: 2px;"></span>
-          </label>
-          <label class="container" style="display: inline; margin-left: 30px;">Medium
-            <input type="radio" name="radio" id="medium">
-            <span class="checkmark" style="margin-top: 2px;"></span>
-          </label>
-          <label  class="container" style="display: inline; margin-left: 30px;">Hard
-            <input type="radio" name="radio" id="hard">
-            <span class="checkmark" style="margin-top: 2px;"></span>
-          </label>
-        </div>
-        <div class="mt30">
-          <label for="questions">Number of questions</label>
-          <input name="questions" id="questions" type="text" pattern="[0-9]*" />
-        </div>  
-        <button id="start" class="submit">Start</button>
-      </div>  
-    </div>
-  </main>
-  <script type="module" src="index.js"></script>
-</body>
+
+      <!-- Artists screen -->
+      <div class="page artists-page hide">
+        <h1>Artists</h1>
+        <button data-page="main-screen" class="page-button">Main screen</button>
+        <button data-page="paintings-page" class="page-button">Paintings</button>
+      </div>
+
+      <!-- Paintings page -->
+      <div class="page paintings-page hide">
+        <h1>Paintings</h1>
+        <button data-page="main-screen" class="page-button">Main screen</button>
+        <button data-page="artists-page" class="page-button">Artists</button>
+      </div>
+
+      <footer>
+        <div class="rss-logo"></div>
+        <div class="author">App developer: Maria Latysheva</div>
+        <div class="year">2021</div>
+      </footer>
+    </main>
+  </body>
 </html>
