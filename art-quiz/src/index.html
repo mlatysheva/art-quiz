@@ -17,28 +17,35 @@
       <div class="page main-screen">
         <div data-page="settings-page" class="settings-icon page-button"></div>
         <h1 class="quiz-title">Art Quiz</h1>
+        <h2 class="select-category large-font">Select category:</h2>
         <button data-page="artists-page" class="page-button">Artists</button>
         <button data-page="paintings-page" class="page-button">Paintings</button>
+        <div class="footer">
+          <div class="rss-logo"></div>
+          <div class="author">App developer: Maria Latysheva</div>
+          <div class="year">2021</div>
+        </div>
       </div>
+
       <!-- Settings screen -->
       <div class="page settings-page hide">        
         <div data-page="main-screen" class="back-arrow page-button">
           <span class="settings-title">Settings</span>
         </div>
         <div class="settings">
-          <label for="volume" class="large-font">Volume</label>
+          <label for="volume" class="smaller-font">Volume</label>
           <div class="volume-controls">
             <div class="volume-mute"></div>
             <input type="range">
             <div class="volume-on"></div>
           </div>
           <div class="time-settings">
-            <p class="large-font">Set time to complete?</p>
+            <p class="smaller-font">Set time to complete?</p>
             <div class="No-Yes-Time smaller-font">
               <span>No</span>
               <label class="switch">                            
                 <input type="checkbox">
-                <span class="slider round"></span>              
+                <span class="slider smooth"></span>              
               </label>
               <span>Yes</span>
             </div>
@@ -55,13 +62,52 @@
             <button class="settings-button save-button">Save</button>
           </div>
         </div>
+        <div class="footer">
+          <div class="rss-logo"></div>
+          <div class="author">App developer: Maria Latysheva</div>
+          <div class="year">2021</div>
+        </div>
       </div>
 
       <!-- Artists screen -->
       <div class="page artists-page hide">
-        <h1>Artists</h1>
+        <div data-page="settings-page" class="settings-icon page-button"></div>
+        <h1 class="large-font page-title">Artists</h1>
+        <p>Choose round:</p>
+        <div id="artist-categories" class="artists-categories-grid categories-grid">
+          <div id="round1" class="round round1">1</div>
+          <div id="round2" class="round round2">2</div>
+          <div id="round3" class="round round3">3</div>
+          <div id="round4" class="round round4">4</div>
+          <div id="round5" class="round round5">5</div>
+          <div id="round6" class="round round6">6</div>
+          <div id="round7" class="round round7">7</div>
+          <div id="round8" class="round round8">8</div>
+          <div id="round9" class="round round9">9</div>
+          <div id="round10" class="round round10">10</div>
+        </div>
+
         <button data-page="main-screen" class="page-button">Main screen</button>
         <button data-page="paintings-page" class="page-button">Paintings</button>
+
+      </div>
+
+      <div class="page round-page hide">
+        <div class="container">
+          <div id="question-container" class="hide">
+            <div id="question">Question</div>
+            <div id="answer-buttons" class="btn-grid">
+              <button class="btn">Answer 1</button>
+              <button class="btn">Answer 2</button>
+              <button class="btn">Answer 3</button>
+              <button class="btn">Answer 4</button>
+            </div>
+          </div>
+          <div class="controls">
+            <button id="start-btn" class="start-btn btn">Start</button>
+            <button id="next-btn" class="next-btn btn hide">Next</button>
+          </div>
+        </div>
       </div>
 
       <!-- Paintings page -->
@@ -71,11 +117,11 @@
         <button data-page="artists-page" class="page-button">Artists</button>
       </div>
 
-      <footer>
+      <!-- <footer id="footer">
         <div class="rss-logo"></div>
         <div class="author">App developer: Maria Latysheva</div>
         <div class="year">2021</div>
-      </footer>
+      </footer> -->
     </main>
   </body>
 </html>

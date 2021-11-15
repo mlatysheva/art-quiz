@@ -1,16 +1,39 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 :root {
   --blue: #3d80f3;
+  --hue-neutral: black;
+  --hue-wrong: darkred;
+  --hue-correct: darkgreen;
 }
+
 body {
-  width: 100wv;
+  width: 100vw;
   height: 100vh;
   padding: 0;
   margin: 0;
   font-size: 14pt;
   color: white;
-  background-color: black;
   font-family: 'Open Sans', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --hue: var(var(--hue-neutral));
+  background-color: black;
+  overflow: hidden;
 }
+
+body.correct {
+  --hue: var(--hue-wrong);
+}
+body.wrong {
+  --hue: var(--hue-wrong);
+}
+
 main {
   width: 100%;
   height: 100%;
@@ -23,8 +46,8 @@ p {
 }
 
 .page {
-  width: 100wv;
-  height: 90vh;
+  width: 100vw;
+  height: 100vh;
   padding: 20px;
   margin: 0;
 }
@@ -33,6 +56,9 @@ p {
 }
 .smaller-font {
   font-size: 1.5rem;
+}
+.page-title {
+  padding: 1rem 0;
 }
 
 button {
@@ -66,6 +92,9 @@ button {
 .main-screen h1 {
   font-size: 3rem;  
 }
+.main-screen h2 {
+  padding-top: 2rem;
+}
 .main-screen button {
   width: 70%;
   height: 10%;
@@ -82,6 +111,7 @@ button {
 /* Settings screen */
 
 .settings-page {
+  padding-top: 2rem;
   background: black;
 }
 .settings-title {
@@ -90,8 +120,8 @@ button {
   text-align: left;
 }
 .back-arrow {
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   background-image: url(../images/icons/back.svg);
   background-repeat: no-repeat;
   background-size: contain;
@@ -204,10 +234,10 @@ input:checked + .slider:before {
 }
 
 /* Rounded sliders */
-.slider.round {
+.slider.smooth {
   border-radius: 34px;
 }
-.slider.round:before {
+.slider.smooth:before {
   border-radius: 50%;
 }
 .time-to-complete {
@@ -270,6 +300,8 @@ input:checked + .slider:before {
 .artists-page {
   
 }
+
+
 .paintings-page {
   
 }
@@ -277,9 +309,120 @@ input:checked + .slider:before {
 .hide {
   display: none;
 }
+/* Categories page */
 
-footer {
-  padding: 1rem 0;
+.categories-grid {
+  width: 95%;
+  max-width: 100%;
+  height: 85%;
+  text-shadow: 2px 2px black;
+  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 20px;
+  /* margin: 20px 0; */
+}
+.round {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: 3rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.round1 {
+  background-image: url(../images/square/0.jpg);  
+}
+.round2 {
+  background-image: url(../images/square/12.jpg);
+}
+.round3 {
+  background-image: url(../images/square/24.jpg);
+}
+.round4 {
+  background-image: url(../images/square/36.jpg);
+}
+.round5 {
+  background-image: url(../images/square/48.jpg);
+}
+.round6 {
+  background-image: url(../images/square/60.jpg);
+}
+.round7 {
+  background-image: url(../images/square/72.jpg);
+}
+.round8 {
+  background-image: url(../images/square/84.jpg);
+}
+.round8 {
+  background-image: url(../images/square/96.jpg);
+}
+.round9 {
+  background-image: url(../images/square/108.jpg);
+}
+.round10 {
+  background-image: url(../images/square/120.jpg);
+}
+
+
+.container {
+  width: 80%;
+  max-width: 80%;
+  margin: 2rem auto;
+  align-self: center;
+  justify-content: center;
+  background-color: black;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 0 10px 2px;
+}
+
+/* Question page */
+
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.btn {
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: darkgrey;
+  font-size: 1.5rem;
+  color: white;
+  outline: none;
+}
+
+.btn:hover{
+  border-color: white;
+}
+.btn.correct {
+  background-color: darkgreen;
+}
+.btn.wrong {
+  background-color: darkred;
+}
+
+.start-btn, .next-btn {
+  padding: 10px 20px;
+}
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 90%;
+  padding: 1rem 1rem;
   display: flex;
   margin: 0 0.7rem;
   flex-direction: row;
@@ -288,12 +431,10 @@ footer {
   text-shadow: 1px 1px black;
 }
 .rss-logo {
-  width: 20%;
   margin-right: 0.5rem;
-  width: 12%;
-  padding-left: 3rem;
+  width: 55px;
+  height: 25px;
   background: rgba(255, 255, 255, 0.5);
-  padding: 0.5rem;
   border-radius: 25px;
   background-image: url(../images/icons/rss-logo.svg);
   background-size: contain;
