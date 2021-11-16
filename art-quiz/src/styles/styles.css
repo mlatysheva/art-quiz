@@ -10,13 +10,14 @@
   --hue-wrong: darkred;
   --hue-correct: darkgreen;
 }
-
+html {
+  font-size: 14pt;
+}
 body {
   width: 100vw;
   height: 100vh;
   padding: 0;
   margin: 0;
-  font-size: 14pt;
   color: white;
   font-family: 'Open Sans', sans-serif;
   display: flex;
@@ -25,6 +26,18 @@ body {
   --hue: var(var(--hue-neutral));
   background-color: black;
   overflow: hidden;
+}
+
+@media (min-width: 600px) {
+  html {
+    font-size: 16pt;
+  }
+}
+
+@media (min-width: 900px) {
+  html {
+    font-size: 18pt;
+  }
 }
 
 body.correct {
@@ -48,17 +61,30 @@ p {
 .page {
   width: 100vw;
   height: 100vh;
-  padding: 20px;
+  padding: 40px;
   margin: 0;
 }
+.wrapper {
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
 .large-font {
+  font-size: 2.5rem;
+}
+.medium-font {
   font-size: 2rem;
 }
 .smaller-font {
   font-size: 1.5rem;
 }
 .page-title {
+  text-align: center;
   padding: 1rem 0;
+}
+.centered {
+  text-align: center;
 }
 
 button {
@@ -298,7 +324,7 @@ input:checked + .slider:before {
 }
 
 .artists-page {
-  
+  height: 90%;
 }
 
 
@@ -332,40 +358,46 @@ input:checked + .slider:before {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer; 
 }
-.round1 {
+.round:hover {
+  box-shadow: 0 0 10px 2px;
+}
+.artist-round1 {
   background-image: url(../images/square/0.jpg);  
 }
-.round2 {
+.artist-round2 {
   background-image: url(../images/square/12.jpg);
 }
-.round3 {
+.artist-round3 {
   background-image: url(../images/square/24.jpg);
 }
-.round4 {
+.artist-round4 {
   background-image: url(../images/square/36.jpg);
 }
-.round5 {
+.artist-round5 {
   background-image: url(../images/square/48.jpg);
 }
-.round6 {
+.artist-round6 {
   background-image: url(../images/square/60.jpg);
 }
-.round7 {
+.artist-round7 {
   background-image: url(../images/square/72.jpg);
 }
-.round8 {
+.artist-round8 {
   background-image: url(../images/square/84.jpg);
 }
-.round8 {
+.artist-round9 {
   background-image: url(../images/square/96.jpg);
 }
-.round9 {
+.artist-round10 {
   background-image: url(../images/square/108.jpg);
 }
-.round10 {
+/* .artist-round10 {
   background-image: url(../images/square/120.jpg);
-}
+} */
 
 
 .container {
@@ -382,6 +414,15 @@ input:checked + .slider:before {
 
 /* Question page */
 
+#painting {
+  width: 200px;
+  height: 200px;
+  margin: 20px;
+  background-image: none;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 .btn-grid {
   display: grid;
   grid-template-columns: repeat(2, auto);
@@ -424,7 +465,6 @@ input:checked + .slider:before {
   width: 90%;
   padding: 1rem 1rem;
   display: flex;
-  margin: 0 0.7rem;
   flex-direction: row;
   justify-content: space-between;
   font-size: 1rem;
@@ -440,4 +480,24 @@ input:checked + .slider:before {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.nav-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.centered-btn {
+  width: 45%;
+}
+.home-btn {
+  background-image: url(../images/icons/home.svg);
+}
+.score-btn {
+  background-image: url(../images/icons/score.svg);
 }

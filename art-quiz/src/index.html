@@ -15,7 +15,7 @@
   <body>
     <main>
       <div class="page main-screen">
-        <div data-page="settings-page" class="settings-icon page-button"></div>
+        <div data-page="settings-page" class="settings-icon page-button nav-btn"></div>
         <h1 class="quiz-title">Art Quiz</h1>
         <h2 class="select-category large-font">Select category:</h2>
         <button data-page="artists-page" class="page-button">Artists</button>
@@ -29,7 +29,7 @@
 
       <!-- Settings screen -->
       <div class="page settings-page hide">        
-        <div data-page="main-screen" class="back-arrow page-button">
+        <div data-page="main-screen" class="back-arrow nav-btn page-button">
           <span class="settings-title">Settings</span>
         </div>
         <div class="settings">
@@ -40,7 +40,7 @@
             <div class="volume-on"></div>
           </div>
           <div class="time-settings">
-            <p class="smaller-font">Set time to complete?</p>
+            <p class="smaller-font">Set time?</p>
             <div class="No-Yes-Time smaller-font">
               <span>No</span>
               <label class="switch">                            
@@ -49,8 +49,8 @@
               </label>
               <span>Yes</span>
             </div>
-            <p class="smaller-font time-to-complete">Seconds to answer</p>
-            <div class="set-time-section">                        
+            <p class="smaller-font time-to-complete">Seconds</p>
+            <div class="set-time-section">                 
               
               <button class="time-button time-minus-button">&minus;</button>
               <input class="seconds-input" id="seconds-to-answer" type="number" min=5 max=30 step="5" value="5">
@@ -71,31 +71,31 @@
 
       <!-- Artists screen -->
       <div class="page artists-page hide">
-        <div data-page="settings-page" class="settings-icon page-button"></div>
+        <div data-page="settings-page" class="settings-icon nav-btn page-button"></div>
         <h1 class="large-font page-title">Artists</h1>
-        <p>Choose round:</p>
+        <p class="centered medium-font">Choose round:</p>
         <div id="artist-categories" class="artists-categories-grid categories-grid">
-          <div id="round1" class="round round1">1</div>
-          <div id="round2" class="round round2">2</div>
-          <div id="round3" class="round round3">3</div>
-          <div id="round4" class="round round4">4</div>
-          <div id="round5" class="round round5">5</div>
-          <div id="round6" class="round round6">6</div>
-          <div id="round7" class="round round7">7</div>
-          <div id="round8" class="round round8">8</div>
-          <div id="round9" class="round round9">9</div>
-          <div id="round10" class="round round10">10</div>
+          <div id="01" class="artist-round1 artist-round round">1</div>
+          <div id="02" class="artist-round2 artist-round round">2</div>
+          <div id="03" class="artist-round3 artist-round round">3</div>
+          <div id="04" class="artist-round4 artist-round round">4</div>
+          <div id="05" class="artist-round5 artist-round round">5</div>
+          <div id="06" class="artist-round6 artist-round round">6</div>
+          <div id="07" class="artist-round7 artist-round round">7</div>
+          <div id="08" class="artist-round8 artist-round round">8</div>
+          <div id="09" class="artist-round9 artist-round round">9</div>
+          <div id="10" class="artist-round10 artist-round round">10</div>
         </div>
-
-        <button data-page="main-screen" class="page-button">Main screen</button>
-        <button data-page="paintings-page" class="page-button">Paintings</button>
-
+        <button data-page="main-screen" class="nav-btn home-btn centered-btn page-button"></button>
+        <button data-page="score-page" class="nav-btn centered-btn score-btn"></button>          
       </div>
 
-      <div class="page round-page hide">
+      <!-- Round screen -->
+      <div class="page round-page artists-round-page hide">
         <div class="container">
           <div id="question-container" class="hide">
             <div id="question">Question</div>
+            <div id="painting"></div>
             <div id="answer-buttons" class="btn-grid">
               <button class="btn">Answer 1</button>
               <button class="btn">Answer 2</button>
