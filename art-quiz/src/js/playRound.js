@@ -13,18 +13,19 @@ function playArtistRound() {
 
   artistCategories.forEach(artistCategory => artistCategory.addEventListener('click', startGame));
 
-  let categoryImages, currentQuestionIndex;
+  let categoryImages, currentQuestionIndex, roundNo;
 
   startButton.addEventListener('click', startGame);
 
   nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
-    setNextQuestion(currentQuestionIndex);
+    setNextQuestion((roundNo - 1) * 12 + currentQuestionIndex);
   })
 
   function startGame() {
     console.log('started');
-    let roundNo = parseInt(this.id.slice(-2));
+    // let roundNo = parseInt(this.id.slice(-2));
+    roundNo = parseInt(this.id.slice(-2));
     artistsPage.classList.add('hide');
     startButton.classList.add('hide');
     artistsRound.classList.remove('hide');
@@ -33,17 +34,19 @@ function playArtistRound() {
     console.log(categoryImages);
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide');
-    setNextQuestion(roundNo);
+    console.log(`Image No. in setNextQuestion will be : ${(roundNo - 1) * 12 + currentQuestionIndex}`);
+    setNextQuestion((roundNo - 1) * 12 + currentQuestionIndex);
   }
 
-  function setNextQuestion(roundNo) {
+  function setNextQuestion(imageNo) {
     resetState();
-    showQuestion((roundNo - 1) * 12 + currentQuestionIndex);
+    showQuestion(imageNo);
 
   }
 
   function showQuestion(imageNo) {
     questionElement.innerText = 'Кто написал эту картину?';
+    console.log('Image number is : ' + imageNo);
     painting.style.backgroundImage = `url(./images/square/${imageNo}.jpg)`;
     let randomEntries = Array.from({length: 3}, () => Math.floor(Math.random() * 240));
     console.log(randomEntries);
