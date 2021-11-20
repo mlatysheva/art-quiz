@@ -120,7 +120,7 @@ const images = [
     "imageNum": "19"
   },
   {
-    "author": "Bartolomeo Murillo.",
+    "author": "Bartolomeo Murillo",
     "name": "Madonna and beads.",
     "year": "1655",
     "imageNum": "20"
@@ -540,7 +540,7 @@ const images = [
     "imageNum": "89"
   },
   {
-    "author": "Vasily tropinin",
+    "author": "Vasily Tropinin",
     "name": "Girl with a pot of roses",
     "year": "1850",
     "imageNum": "90"

@@ -14,11 +14,19 @@ function playArtistRound() {
   const painting = document.getElementById('painting');
   const endMessageDiv = document.getElementById('end-message');
 
+  const correctSound = new Audio('../sounds/correctAnswer.mp3');
+  const wrongSound = new Audio('../sounds/wrongAnswer.mp3');
+  const attentionQuestion = new Audio('../sounds/attentionQuestion.mp3');
+  const attentionCorrectAnswer = new Audio('../sounds/attentionCorrectAnswer.mp3');
+  const endOfRound = new Audio('../sounds/endOfRound.mp3');
+
+  let score;
+  let answeredQuestions;
+  let gameResults = JSON.parse(localStorage.getItem('gameResults')) || [];
+
   paintingCategories.forEach(artistCategory => artistCategory.addEventListener('click', startGame));
 
   let categoryImages, currentQuestionIndex, roundNo;
-
-  // startButton.addEventListener('click', startGame);
 
   nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
@@ -26,7 +34,11 @@ function playArtistRound() {
   })
 
   function startGame() {
-    console.log('started');
+    localStorage.removeItem('score');
+    localStorage.removeItem('answeredQuestions');
+    console.log('Game started');
+    score = 0;
+    answeredQuestions = [];
     roundNo = parseInt(this.id.slice(-2));
     localStorage.setItem('roundNo', roundNo);
     paintingsPage.classList.add('hide');
@@ -41,10 +53,12 @@ function playArtistRound() {
     questionContainerElement.classList.remove('hide');
     console.log(`Image No. in setNextQuestion will be : ${(roundNo - 1) * 10 + currentQuestionIndex}`);
     setNextQuestion((roundNo - 1) * 10 + currentQuestionIndex);
+    attentionQuestion.play();
   }
 
   function setNextQuestion(imageNo) {
     resetState();
+    
     showQuestion(imageNo);
   }
 
@@ -90,15 +104,31 @@ function playArtistRound() {
   }
 
   function selectAnswer(event) {
+    console.log('event is '+ event);
     const selectedButton = event.target;
+    console.log('selectedButton inner text is: ' + selectedButton.innerText);
     const correct = selectedButton.dataset.correct;
+    console.log('correct is: ' + correct);
     Array.from(answerButtonsElement.children).forEach(button => {
-      setStatusClass(button, button.dataset.correct)
+      setStatusClass(button, button.dataset.correct);
+      console.log('setStatusClass(button, button.dataset.correct) is :' + setStatusClass(button, button.dataset.correct));
     })
+    
+    if (selectedButton.classList.contains("correct")) {
+      console.log('selectedButton.classList is: ' + selectedButton.classList);
+      correctSound.play();
+      score++;
+      answeredQuestions.push(1);
+    }
+    else {
+      wrongSound.play();
+      answeredQuestions.push(0);
+    }
     
     if (categoryImages.length > currentQuestionIndex + 8) {
       nextButton.classList.remove('hide');
     } else {
+      
       let endRoundMessage = `You finished Round ${roundNo}!`;
       console.log('endRoundMessage is: ' + endRoundMessage);
       
@@ -109,8 +139,9 @@ function playArtistRound() {
       endMessageDiv.classList.remove('hide');
     
       scoreButton.classList.remove('hide');
-      decolorise();
+      endRound();
       scoreButton.addEventListener('click', showRoundResults);
+      endOfRound.play();
     }
   }
 
@@ -128,11 +159,43 @@ function playArtistRound() {
     element.classList.remove('wrong');
   }
 
-  function decolorise() {
+  function endRound() {
+    
     const round = localStorage.getItem('roundNo');
     const formattedRound = ('0' + round).slice(-2);
     const category = document.getElementById(formattedRound);
+    if (category.childElementCount > 0) {
+      category.removeChild(category.lastChild);
+    }
+    
+    const roundResultsDiv = document.createElement('div');    
+    const roundResults = document.createTextNode(`${score}/10`);
+    
+    // add the text node to the newly created div
+    roundResultsDiv.appendChild(roundResults);
+    
+    // add the newly created element and its content into the DOM    
+    category.appendChild(roundResultsDiv);
     category.style.filter = 'grayscale(100%)';
+
+    // keep results in local storage
+    localStorage.removeItem('score');
+    localStorage.removeItem('answeredQuestions');
+    localStorage.setItem('score', score);
+    console.log('answeredQuestions is: ' + answeredQuestions);
+    console.log(typeof(answeredQuesions));
+
+    localStorage.setItem('answeredQuestions', answeredQuestions);
+
+    let roundScore = {
+      "round": roundNo,
+      "score": score,
+      "answeredQuesions": localStorage.getItem('answeredQuestions')
+    }
+
+    gameResults.push(roundScore);
+
+    localStorage.setItem('gameResults', JSON.stringify(gameResults));    
   }
 
   function showRoundResults() {

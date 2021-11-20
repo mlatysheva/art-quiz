@@ -374,7 +374,9 @@ input:checked + .slider:before {
   text-shadow: 2px 2px black;
   margin: 1rem auto;
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  /* grid-template-columns: repeat(2, auto); */
+  grid-template-columns: 48% 48%;
+  justify-content: center;
   gap: 20px;
 }
 .round {
@@ -393,6 +395,12 @@ input:checked + .slider:before {
 }
 .round:hover {
   box-shadow: 0 0 10px 2px;
+}
+
+.painting-round {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .painting-round1 {
   background-image: url(../images/square/0.jpg);  
@@ -549,7 +557,7 @@ input:checked + .slider:before {
   left: 48%;
 }
 .right-btn {
-  left: 90%;
+  right: 1rem;
 }
 .home-btn-nav {
   background-image: url(../images/icons/home.svg);
