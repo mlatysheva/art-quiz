@@ -1,4 +1,4 @@
-const images = [
+const imagesRu = [
     {
         author: 'Павел Федотов',
         name: 'Сватовство майора',
@@ -1447,4 +1447,4 @@ const images = [
     },
 ];
 
-export default images;
+export { imagesRu };

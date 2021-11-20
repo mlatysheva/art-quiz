@@ -17,13 +17,13 @@
       <div class="page main-screen">
         <div data-page="settings-page" class="settings-icon page-button nav-btn"></div>
         <h1 class="quiz-title">Art Quiz</h1>
-        <h2 class="select-category large-font">Select category:</h2>
-        <button data-page="artists-page" class="page-button">Artists</button>
+        <h2 class="select-category small-font">Select category:</h2>
         <button data-page="paintings-page" class="page-button">Paintings</button>
+        <button data-page="artists-page" class="page-button">Artists</button>        
         <div class="footer">
           <div class="rss-logo"></div>
           <div class="author">App developer: Maria Latysheva</div>
-          <div class="year">2021</div>
+          <div class="year">  2021</div>
         </div>
       </div>
 
@@ -33,10 +33,11 @@
           <span class="settings-title">Settings</span>
         </div>
         <div class="settings">
+          <input type="text" class="user-name small-font" placeholder="[Enter your name]"/>
           <label for="volume" class="smaller-font">Volume</label>
           <div class="volume-controls">
             <div class="volume-mute"></div>
-            <input type="range">
+            <input type="range" class="volume-setting">
             <div class="volume-on"></div>
           </div>
           <div class="time-settings">
@@ -44,7 +45,7 @@
             <div class="No-Yes-Time smaller-font">
               <span>No</span>
               <label class="switch">                            
-                <input type="checkbox">
+                <input type="checkbox" class="time-setting">
                 <span class="slider smooth"></span>              
               </label>
               <span>Yes</span>
@@ -65,63 +66,91 @@
         <div class="footer">
           <div class="rss-logo"></div>
           <div class="author">App developer: Maria Latysheva</div>
-          <div class="year">2021</div>
+          <div class="year">  2021</div>
         </div>
       </div>
 
       <!-- Artists screen -->
-      <div class="page artists-page hide">
+      <div class="page paintings-page hide">
         <div data-page="settings-page" class="settings-icon nav-btn page-button"></div>
-        <h1 class="large-font page-title">Artists</h1>
-        <p class="centered medium-font">Choose round:</p>
+        <h1 class="large-font page-title">Paintings</h1>
+        <p class="centered small-font">Choose round:</p>
         <div id="artist-categories" class="artists-categories-grid categories-grid">
-          <div id="01" class="artist-round1 artist-round round">1</div>
-          <div id="02" class="artist-round2 artist-round round">2</div>
-          <div id="03" class="artist-round3 artist-round round">3</div>
-          <div id="04" class="artist-round4 artist-round round">4</div>
-          <div id="05" class="artist-round5 artist-round round">5</div>
-          <div id="06" class="artist-round6 artist-round round">6</div>
-          <div id="07" class="artist-round7 artist-round round">7</div>
-          <div id="08" class="artist-round8 artist-round round">8</div>
-          <div id="09" class="artist-round9 artist-round round">9</div>
-          <div id="10" class="artist-round10 artist-round round">10</div>
+          <div id="01" class="painting-round1 painting-round round">1</div>
+          <div id="02" class="painting-round2 painting-round round">2</div>
+          <div id="03" class="painting-round3 painting-round round">3</div>
+          <div id="04" class="painting-round4 painting-round round">4</div>
+          <div id="05" class="painting-round5 painting-round round">5</div>
+          <div id="06" class="painting-round6 painting-round round">6</div>
+          <div id="07" class="painting-round7 painting-round round">7</div>
+          <div id="08" class="painting-round8 painting-round round">8</div>
+          <div id="09" class="painting-round9 painting-round round">9</div>
+          <div id="10" class="painting-round10 painting-round round">10</div>
+          <div id="11" class="painting-round11 painting-round round">11</div>
+          <div id="12" class="painting-round12 painting-round round">12</div>
         </div>
-        <button data-page="main-screen" class="nav-btn home-btn centered-btn page-button"></button>
-        <button data-page="score-page" class="nav-btn centered-btn score-btn"></button>          
+    
+        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed page-button"></button>
+        <button data-page="score-page" title="Score" class="nav-btn score-btn-nav bottom-fixed centered-btn page-button"></button> 
+        <button data-page="paintings-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button>      
       </div>
 
       <!-- Round screen -->
-      <div class="page round-page artists-round-page hide">
-        <div class="container">
-          <div id="question-container" class="hide">
-            <div id="question">Question</div>
-            <div id="painting"></div>
-            <div id="answer-buttons" class="btn-grid">
-              <button class="btn">Answer 1</button>
-              <button class="btn">Answer 2</button>
-              <button class="btn">Answer 3</button>
-              <button class="btn">Answer 4</button>
-            </div>
-          </div>
-          <div class="controls">
-            <button id="start-btn" class="start-btn btn">Start</button>
-            <button id="next-btn" class="next-btn btn hide">Next</button>
+      <div class="page round-page paintings-round-page hide">
+        <div data-page="settings-page" class="settings-icon nav-btn page-button"></div>
+        <div id="question-container" class="hide">
+          <div id="question" class="centered medium-font"></div>
+          <div id="painting"></div>
+          <div id="answer-buttons" class="btn-grid">
+            <button class="btn">Answer 1</button>
+            <button class="btn">Answer 2</button>
+            <button class="btn">Answer 3</button>
+            <button class="btn">Answer 4</button>
           </div>
         </div>
+        <div class="controls">
+          <div id="end-message" class= "small-font"></div>
+          <button id="start-btn" class="start-btn btn">Start</button>
+          <button id="next-btn" class="next-btn btn hide">Next</button>
+          
+        </div>
+        <button data-page="score-page" id="score-btn" class="score-btn btn page-button hide">Check your score</button>
+        
+        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed page-button"></button>
+        <button data-page="score-page" title="Score" class="nav-btn score-btn-nav bottom-fixed centered-btn page-button"></button> 
+        <button data-page="paintings-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button> 
+      </div>
+
+      <!-- Score screen -->
+      <div class="page score-page hide">
+        <div data-page="settings-page" class="settings-icon nav-btn page-button"></div>
+        <h1 class="large-font page-title">Your score</h1>
+        <p class="centered small-font">In round <span class="round-number"></span>:</p>
+        <div id="questions-played" class="paintings-shown-grid categories-grid">
+          <div id="question-0" class="question0 question">1</div>
+          <div id="question-1" class="question1 question">2</div>
+          <div id="question-2" class="question2 question">3</div>
+          <div id="question-3" class="question3 question">4</div>
+          <div id="question-4" class="question4 question">5</div>
+          <div id="question-5" class="question5 question">6</div>
+          <div id="question-6" class="question6 question">7</div>
+          <div id="question-7" class="question7 question">8</div>
+          <div id="question-8" class="question8 question">9</div>
+          <div id="question-9" class="question9 question">10</div>          
+        </div>
+        
+        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed page-button"></button>
+        <button data-page="score-page" title="Score" class="nav-btn score-btn-nav bottom-fixed centered-btn page-button"></button> 
+        <button data-page="paintings-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button>  
       </div>
 
       <!-- Paintings page -->
-      <div class="page paintings-page hide">
-        <h1>Paintings</h1>
+      <div class="page artists-page hide">
+        <h1>Artists</h1>
         <button data-page="main-screen" class="page-button">Main screen</button>
-        <button data-page="artists-page" class="page-button">Artists</button>
+        <button data-page="paintings-page" class="page-button">Artists</button>
       </div>
 
-      <!-- <footer id="footer">
-        <div class="rss-logo"></div>
-        <div class="author">App developer: Maria Latysheva</div>
-        <div class="year">2021</div>
-      </footer> -->
     </main>
   </body>
 </html>

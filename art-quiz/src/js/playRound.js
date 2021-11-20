@@ -1,51 +1,55 @@
-import images from "./images";
+import { hideScreens } from "./hideScreens.js";
+import { images } from "./imagesEng.js";
 
 function playArtistRound() {
   const startButton = document.getElementById('start-btn');
   const nextButton = document.getElementById('next-btn');
+  const scoreButton = document.getElementById('score-btn');
   const questionContainerElement = document.getElementById('question-container');
   const questionElement = document.getElementById('question');
   const answerButtonsElement = document.getElementById('answer-buttons');
-  const artistCategories = document.querySelectorAll('.artist-round');
-  const artistsPage = document.querySelector('.artists-page');
-  const artistsRound = document.querySelector('.artists-round-page');
+  const paintingCategories = document.querySelectorAll('.painting-round');
+  const paintingsPage = document.querySelector('.paintings-page');
+  const paintingsRound = document.querySelector('.paintings-round-page');
   const painting = document.getElementById('painting');
+  const endMessageDiv = document.getElementById('end-message');
 
-  artistCategories.forEach(artistCategory => artistCategory.addEventListener('click', startGame));
+  paintingCategories.forEach(artistCategory => artistCategory.addEventListener('click', startGame));
 
   let categoryImages, currentQuestionIndex, roundNo;
 
-  startButton.addEventListener('click', startGame);
+  // startButton.addEventListener('click', startGame);
 
   nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
-    setNextQuestion((roundNo - 1) * 12 + currentQuestionIndex);
+    setNextQuestion((roundNo - 1) * 10 + currentQuestionIndex);
   })
 
   function startGame() {
     console.log('started');
-    // let roundNo = parseInt(this.id.slice(-2));
     roundNo = parseInt(this.id.slice(-2));
-    artistsPage.classList.add('hide');
+    localStorage.setItem('roundNo', roundNo);
+    paintingsPage.classList.add('hide');
     startButton.classList.add('hide');
-    artistsRound.classList.remove('hide');
+    scoreButton.classList.add('hide');
+    endMessageDiv.classList.add('hide');
+    paintingsRound.classList.remove('hide');
     console.log(roundNo);
-    categoryImages = images.slice((roundNo - 1)*12, (roundNo - 1) * 12 + 12);
+    categoryImages = images.slice((roundNo - 1)*10, (roundNo - 1) * 10 + 10);
     console.log(categoryImages);
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide');
-    console.log(`Image No. in setNextQuestion will be : ${(roundNo - 1) * 12 + currentQuestionIndex}`);
-    setNextQuestion((roundNo - 1) * 12 + currentQuestionIndex);
+    console.log(`Image No. in setNextQuestion will be : ${(roundNo - 1) * 10 + currentQuestionIndex}`);
+    setNextQuestion((roundNo - 1) * 10 + currentQuestionIndex);
   }
 
   function setNextQuestion(imageNo) {
     resetState();
     showQuestion(imageNo);
-
   }
 
   function showQuestion(imageNo) {
-    questionElement.innerText = 'Кто написал эту картину?';
+    questionElement.innerText = 'Who painted this painting?';
     console.log('Image number is : ' + imageNo);
     painting.style.backgroundImage = `url(./images/square/${imageNo}.jpg)`;
     let randomEntries = Array.from({length: 3}, () => Math.floor(Math.random() * 240));
@@ -91,11 +95,22 @@ function playArtistRound() {
     Array.from(answerButtonsElement.children).forEach(button => {
       setStatusClass(button, button.dataset.correct)
     })
-    if (categoryImages.length > currentQuestionIndex + 1) {
+    
+    if (categoryImages.length > currentQuestionIndex + 8) {
       nextButton.classList.remove('hide');
     } else {
-      startButton.innerText = 'Restart';
-      startButton.classList.remove('hide');
+      let endRoundMessage = `You finished Round ${roundNo}!`;
+      console.log('endRoundMessage is: ' + endRoundMessage);
+      
+      console.log('endMessageDiv is: '+ endMessageDiv);
+      
+      endMessageDiv.innerHTML = `${endRoundMessage}`;
+        
+      endMessageDiv.classList.remove('hide');
+    
+      scoreButton.classList.remove('hide');
+      decolorise();
+      scoreButton.addEventListener('click', showRoundResults);
     }
   }
 
@@ -113,28 +128,28 @@ function playArtistRound() {
     element.classList.remove('wrong');
   }
 
-  const questions =[
-    {
-      question: 'Who is the author of this painting?',
-      answers: [
-        { text: 'Fedotov', correct: true },
-        { text: 'Murillo', correct: false }
-      ]
-    },
-    {
-      question: 'When did Fedotov die?',
-      answers: [
-        { text: '1867', correct: true },
-        { text: '1845', correct: false }
-      ]
-    },
-    {
-      question: 'Where is Munk buried?',
-      answers: [
-        { text: 'Paris', correct: true },
-        { text: 'Nante', correct: false }
-      ]
-    }
-  ]
+  function decolorise() {
+    const round = localStorage.getItem('roundNo');
+    const formattedRound = ('0' + round).slice(-2);
+    const category = document.getElementById(formattedRound);
+    category.style.filter = 'grayscale(100%)';
+  }
+
+  function showRoundResults() {
+    const scoreScreen = document.querySelector('.score-page');
+    const roundPage = document.querySelector('.round-page');
+
+    // pageBtns.forEach(btn => btn.addEventListener('click', function() {
+    //   const pageName = this.dataset.page;
+    //   console.log('pageName is ' + pageName);
+    //   this.parentNode.classList.add('hide');
+    //   pages.forEach(page => {
+    //     if(page.classList.contains(pageName)) {
+    //       page.classList.remove('hide');
+    //     }
+    //   })
+    // }))
+  }
 }
+
 export { playArtistRound }
