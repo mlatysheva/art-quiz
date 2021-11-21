@@ -15,11 +15,11 @@ function playArtistRound() {
   const painting = document.getElementById('painting');
   const endMessageDiv = document.getElementById('end-message');
 
-  const correctSound = new Audio('../sounds/correctAnswer.mp3');
-  const wrongSound = new Audio('../sounds/wrongAnswer.mp3');
-  const attentionQuestion = new Audio('../sounds/attentionQuestion.mp3');
-  const attentionCorrectAnswer = new Audio('../sounds/attentionCorrectAnswer.mp3');
-  const endOfRound = new Audio('../sounds/endOfRound.mp3');
+  const correctSound = new Audio('./sounds/correctAnswer.mp3');
+  const wrongSound = new Audio('./sounds/wrongAnswer.mp3');
+  const attentionQuestion = new Audio('./sounds/attentionQuestion.mp3');
+  const attentionCorrectAnswer = new Audio('./sounds/attentionCorrectAnswer.mp3');
+  const endOfRound = new Audio('./sounds/endOfRound.mp3');
 
   let score;
   let answeredQuestions;
