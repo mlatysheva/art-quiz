@@ -5,6 +5,7 @@ function playArtistRound() {
   const startButton = document.getElementById('start-btn');
   const nextButton = document.getElementById('next-btn');
   const scoreButton = document.getElementById('score-btn');
+  const categoriesButton = document.getElementById('categories-btn');
   const questionContainerElement = document.getElementById('question-container');
   const questionElement = document.getElementById('question');
   const answerButtonsElement = document.getElementById('answer-buttons');
@@ -44,6 +45,7 @@ function playArtistRound() {
     paintingsPage.classList.add('hide');
     startButton.classList.add('hide');
     scoreButton.classList.add('hide');
+    categoriesButton.classList.add('hide');
     endMessageDiv.classList.add('hide');
     paintingsRound.classList.remove('hide');
     console.log(roundNo);
@@ -129,16 +131,12 @@ function playArtistRound() {
       nextButton.classList.remove('hide');
     } else {
       
-      let endRoundMessage = `You finished Round ${roundNo}!`;
-      console.log('endRoundMessage is: ' + endRoundMessage);
-      
-      console.log('endMessageDiv is: '+ endMessageDiv);
-      
-      endMessageDiv.innerHTML = `${endRoundMessage}`;
-        
+      let endRoundMessage = `You finished round ${roundNo} with score ${score}`;      
+      endMessageDiv.innerHTML = `${endRoundMessage}`;        
       endMessageDiv.classList.remove('hide');
     
       scoreButton.classList.remove('hide');
+      categoriesButton.classList.remove('hide');
       endRound();
       scoreButton.addEventListener('click', showRoundResults);
       endOfRound.play();
@@ -182,8 +180,6 @@ function playArtistRound() {
     localStorage.removeItem('score');
     localStorage.removeItem('answeredQuestions');
     localStorage.setItem('score', score);
-    console.log('answeredQuestions is: ' + answeredQuestions);
-    console.log(typeof(answeredQuesions));
 
     localStorage.setItem('answeredQuestions', answeredQuestions);
 

@@ -502,7 +502,7 @@ input:checked + .slider:before {
   background-color: darkred;
 }
 
-.start-btn, .next-btn, .score-btn {
+.start-btn, .next-btn, .score-btn, .categories-btn {
   padding: 10px 20px;
   font-size: larger;
 }
