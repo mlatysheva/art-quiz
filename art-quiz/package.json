@@ -5,7 +5,8 @@
   "name": "art-quiz",
   "scripts": {
     "start": "webpack serve --env development",
-    "build": "webpack"
+    "build": "webpack",
+    "deploy": "gh-pages -d dist -e art-quiz --message 'fix: adjust deploy'"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
@@ -21,6 +22,7 @@
     "webpack-remove-empty-scripts": "^0.7.1"
   },
   "dependencies": {
+    "gh-pages": "^3.2.3",
     "normalize.css": "^8.0.1"
   }
 }
