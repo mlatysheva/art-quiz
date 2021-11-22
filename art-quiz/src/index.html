@@ -93,10 +93,10 @@
     
         <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed page-button"></button>
         <button data-page="score-page" title="Score" class="nav-btn score-btn-nav bottom-fixed centered-btn page-button"></button> 
-        <button data-page="paintings-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button>      
+        <button data-page="artists-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button>      
       </div>
 
-      <!-- Round screen -->
+      <!-- Paintings Round screen -->
       <div class="page round-page paintings-round-page hide">
         <div data-page="settings-page" class="settings-icon nav-btn page-button"></div>
         <div id="question-container" class="hide">
@@ -155,6 +155,33 @@
         <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed page-button"></button>
         <button data-page="score-page" title="Score" class="nav-btn score-btn-nav bottom-fixed centered-btn page-button"></button> 
         <button data-page="paintings-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button>     
+      </div>
+
+      <!-- Artist Round screen -->
+      <div class="page round-page artist-round-page hide">
+        <div data-page="settings-page" class="settings-icon nav-btn page-button"></div>
+        <div id="artist-question-container" class="hide">
+          <div id="artist-question" class="centered medium-font"></div>
+          <div id="painting1"></div>
+          <div id="painting2"></div>
+          <div id="painting3"></div>
+          <div id="painting4"></div>
+          <div id="artist-answer-buttons" class="btn-grid">
+          </div>
+        </div>
+
+        <div class="controls">
+          <div id="artist-end-message" class= "larger-font"></div>
+          <div id="artist-end-score" class= "larger-font"></div>
+          <button id="artist-start-btn" class="start-btn btn">Start</button>
+          <button id="artist-next-btn" class="next-btn btn hide">Next</button>          
+        </div>
+
+        <button data-page="artists-page" id="artist-categories-btn" class="categories-btn btn page-button hide">Continue</button>
+        <button data-page="score-page" id="artist-score-btn" class="score-btn btn page-button hide">Score</button>
+        
+        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed left-btn page-button"></button>
+        <button data-page="paintings-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button> 
       </div>
 
     </main>

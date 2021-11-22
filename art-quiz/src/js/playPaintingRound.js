@@ -1,4 +1,3 @@
-// import { hideScreens } from "./hideScreens.js";
 import { images } from "./imagesEng.js";
 
 function playPaintingRound() {
@@ -33,7 +32,7 @@ function playPaintingRound() {
 
   localStorage.removeItem('gameResults');
 
-  paintingCategories.forEach(artistCategory => artistCategory.addEventListener('click', startGame));
+  paintingCategories.forEach(paintingCategory => paintingCategory.addEventListener('click', startGame));
 
   let categoryImages, currentQuestionIndex, roundNo;
 
@@ -147,9 +146,6 @@ function playPaintingRound() {
     if (categoryImages.length > currentQuestionIndex + 1) {
       nextButton.classList.remove('hide');
     } else {
-      // answerButtonsElement.children.forEach(child => {
-      //   child.classList.add('hide');
-      // })
       let endRoundMessage = `You finished round ${roundNo} with score ${score}`;     
       endMessageDiv.innerHTML = `${endRoundMessage}`;        
       endMessageDiv.classList.remove('hide');
@@ -159,8 +155,6 @@ function playPaintingRound() {
       categoriesButton.classList.remove('hide');
       categoriesButton.classList.add('inline-block');
       endRound();
-      // const starButton = document.querySelector('.score-btn-nav');
-      // starButton.addEventListener('click', showRoundResults);
       scoreButton.addEventListener('click', showRoundResults);
       if (localStorage.getItem('volume') != '0') {
         endOfRound.play();
@@ -194,18 +188,15 @@ function playPaintingRound() {
     const roundResultsDiv = document.createElement('div');    
     const roundResults = document.createTextNode(`${score}/10`);
     
-    // add the text node to the newly created div
     roundResultsDiv.appendChild(roundResults);
-    
-    // add the newly created element and its content into the DOM    
+        
     category.appendChild(roundResultsDiv);
     category.style.filter = 'grayscale(100%)';
 
-    // keep results in local storage
+    // update and keep results in local storage
     localStorage.removeItem('score');
     localStorage.removeItem('answeredQuestions');
     localStorage.setItem('score', score);
-
     localStorage.setItem('answeredQuestions', answeredQuestions);
 
     let roundScore = {
@@ -215,9 +206,7 @@ function playPaintingRound() {
     }
 
     gameResults.push(roundScore);
-
     localStorage.setItem('gameResults', JSON.stringify(gameResults)); 
-    // showRoundResults();   
   }
 
   function showRoundResults() {
@@ -256,8 +245,7 @@ function playPaintingRound() {
       })
       
     }
-    showResults();
-    
+    showResults();    
   }
 }
 
