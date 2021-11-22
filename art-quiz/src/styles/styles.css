@@ -166,7 +166,7 @@ button {
 }
 @media (min-width: 1100px) {
   .settings-page {
-    width: 70vw;
+    width: 80vw;
   }
 }
 .settings-title {
@@ -376,7 +376,7 @@ input:checked + .slider:before {
 }
 @media (min-width: 1100px) {
   .paintings-page {
-    width: 70vw;
+    width: 80vw;
   }
 }
 
@@ -386,7 +386,7 @@ input:checked + .slider:before {
 }
 @media (min-width: 1100px) {
   .round-page {
-    width: 70vw;
+    width: 80vw;
   }
 }
 
@@ -435,7 +435,7 @@ input:checked + .slider:before {
 
 @media (min-width: 1100px) {
   .artists-page {
-    width: 70vw;
+    width: 80vw;
   }
 }
 .hide {
@@ -689,7 +689,7 @@ input:checked + .slider:before {
 
 @media (min-width: 1100px) {
   .score-page {
-    width: 70vw;
+    width: 80vw;
   }
 }
 
@@ -754,7 +754,7 @@ input:checked + .slider:before {
 
 @media (min-width: 1100px) {
   .footer {
-    width: 70vw;
+    width: 80vw;
   }
 }
 .rss-logo {
