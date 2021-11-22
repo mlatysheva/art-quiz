@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="images/icons/favicon.ico" rel="shortcut icon"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -29,7 +30,7 @@
 
       <!-- Settings screen -->
       <div class="page settings-page hide">        
-        <div data-page="main-screen" class="back-arrow nav-btn page-button">
+        <div data-page="main-screen" class="home-btn-nav nav-btn page-button">
           <span class="settings-title">Settings</span>
         </div>
         <div class="settings">
@@ -70,12 +71,12 @@
         </div>
       </div>
 
-      <!-- Artists screen -->
+      <!-- Paintings screen -->
       <div class="page paintings-page hide">
         <div data-page="settings-page" class="settings-icon nav-btn page-button"></div>
         <h1 class="large-font page-title">Paintings</h1>
         <p class="centered small-font">Choose round:</p>
-        <div id="artist-categories" class="artists-categories-grid categories-grid">
+        <div id="painting-categories" class="paintings-categories-grid categories-grid">
           <div id="01" class="painting-round1 painting-round round">1</div>
           <div id="02" class="painting-round2 painting-round round">2</div>
           <div id="03" class="painting-round3 painting-round round">3</div>
@@ -102,10 +103,6 @@
           <div id="question" class="centered medium-font"></div>
           <div id="painting"></div>
           <div id="answer-buttons" class="btn-grid">
-            <button class="btn">Answer 1</button>
-            <button class="btn">Answer 2</button>
-            <button class="btn">Answer 3</button>
-            <button class="btn">Answer 4</button>
           </div>
         </div>
         <div class="controls">
@@ -118,39 +115,46 @@
         <button data-page="paintings-page" id="categories-btn" class="categories-btn btn page-button hide">Continue</button>
         <button data-page="score-page" id="score-btn" class="score-btn btn page-button hide">Score</button>
         
-        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed page-button"></button>
-        <button data-page="score-page" title="Score" class="nav-btn score-btn-nav bottom-fixed centered-btn page-button"></button> 
+        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed left-btn page-button"></button>
         <button data-page="paintings-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button> 
       </div>
 
       <!-- Score screen -->
       <div class="page score-page hide">
         <div data-page="settings-page" class="settings-icon nav-btn page-button"></div>
-        <h1 class="large-font page-title">Your score</h1>
-        <p class="centered small-font">In round <span class="round-number"></span>:</p>
+        <p class="centered large-font">Round <span class="round-number large-font"></span></span></p>
+        <p class="small-font page-title"><span id="gamer"></span>your score is: <span id="round-score" class="large-font"></span></p>        
         <div id="questions-played" class="paintings-shown-grid categories-grid">
-          <div id="question-0" class="question0 question">1</div>
-          <div id="question-1" class="question1 question">2</div>
-          <div id="question-2" class="question2 question">3</div>
-          <div id="question-3" class="question3 question">4</div>
-          <div id="question-4" class="question4 question">5</div>
-          <div id="question-5" class="question5 question">6</div>
-          <div id="question-6" class="question6 question">7</div>
-          <div id="question-7" class="question7 question">8</div>
-          <div id="question-8" class="question8 question">9</div>
-          <div id="question-9" class="question9 question">10</div>          
         </div>
         
         <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed page-button"></button>
-        <button data-page="score-page" title="Score" class="nav-btn score-btn-nav bottom-fixed centered-btn page-button"></button> 
         <button data-page="paintings-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button>  
       </div>
 
-      <!-- Paintings page -->
+      <!-- Artists page -->
       <div class="page artists-page hide">
-        <h1>Artists</h1>
-        <button data-page="main-screen" class="page-button">Main screen</button>
-        <button data-page="paintings-page" class="page-button">Artists</button>
+        <div data-page="settings-page" class="settings-icon nav-btn page-button"></div>
+        <h1 class="large-font page-title">Artists - Page under construction</h1>
+
+        <p class="centered small-font">Choose round:</p>
+        <div id="artist-categories" class="artists-categories-grid categories-grid">
+          <div id="artist-01" class="artist-round1 artist-round round">1</div>
+          <div id="artist-02" class="artist-round2 artist-round round">2</div>
+          <div id="artist-03" class="artist-round3 artist-round round">3</div>
+          <div id="artist-04" class="artist-round4 artist-round round">4</div>
+          <div id="artist-05" class="artist-round5 artist-round round">5</div>
+          <div id="artist-06" class="artist-round6 artist-round round">6</div>
+          <div id="artist-07" class="artist-round7 artist-round round">7</div>
+          <div id="artist-08" class="artist-round8 artist-round round">8</div>
+          <div id="artist-09" class="artist-round9 artist-round round">9</div>
+          <div id="artist-10" class="artist-round10 artist-round round">10</div>
+          <div id="artist-11" class="artist-round11 artist-round round">11</div>
+          <div id="artist-12" class="artist-round12 artist-round round">12</div>
+        </div>
+    
+        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed page-button"></button>
+        <button data-page="score-page" title="Score" class="nav-btn score-btn-nav bottom-fixed centered-btn page-button"></button> 
+        <button data-page="paintings-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button>     
       </div>
 
     </main>

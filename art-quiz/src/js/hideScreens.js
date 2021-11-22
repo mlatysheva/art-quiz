@@ -3,7 +3,20 @@ function hideScreens() {
   const pageBtns = document.querySelectorAll('.page-button');
   console.log('pageBtns are: ' + pageBtns);
 
-  pageBtns.forEach(btn => btn.addEventListener('click', function() {
+  // pageBtns.forEach(btn => btn.addEventListener('click', function () {
+  //   const pageName = this.dataset.page;
+  //   console.log('pageName is ' + pageName);
+  //   this.parentNode.classList.add('hide');
+  //   pages.forEach(page => {
+  //     if(page.classList.contains(pageName)) {
+  //       page.classList.remove('hide');
+  //     }
+  //   })
+  // }))
+
+  pageBtns.forEach(btn => btn.addEventListener('click', screenchange));
+
+  function screenchange() {
     const pageName = this.dataset.page;
     console.log('pageName is ' + pageName);
     this.parentNode.classList.add('hide');
@@ -12,6 +25,7 @@ function hideScreens() {
         page.classList.remove('hide');
       }
     })
-  }))
+  }
 }
+
 export { hideScreens }
