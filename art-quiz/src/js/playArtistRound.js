@@ -11,12 +11,8 @@ function playArtistRound() {
   const artistCategories = document.querySelectorAll('.artist-round');
   const artistsPage = document.querySelector('.artists-page');
   const artistRound = document.querySelector('.artist-round-page');
-  const painting1 = document.getElementById('painting01');
-  const painting2 = document.getElementById('painting02');
-  const painting3 = document.getElementById('painting03');
-  const painting4 = document.getElementById('painting04');
   const endMessageDiv = document.getElementById('artist-end-message');
-  const questionsPlayed = document.getElementById('questions-played');
+  const questionsPlayed = document.getElementById('artist-questions-played');
 
   const correctSound = new Audio('./sounds/correctAnswer.mp3');
   const wrongSound = new Audio('./sounds/wrongAnswer.mp3');
@@ -61,12 +57,9 @@ function playArtistRound() {
     categoriesButton.classList.add('hide');
     endMessageDiv.classList.add('hide');
     artistRound.classList.remove('hide');
-    // console.log(roundNo);
     categoryImages = images.slice((roundNo - 1)*10 + 120, (roundNo - 1) * 10 + 130);
-    // console.log(categoryImages);
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide');
-    // console.log(`Image No. in setNextQuestion will be : ${(roundNo - 1) * 10 + currentQuestionIndex}`);
     setNextQuestion((roundNo - 1) * 10 + 120 + currentQuestionIndex);
     if (localStorage.getItem('volume') != '0') {
       attentionQuestion.play();
@@ -79,35 +72,20 @@ function playArtistRound() {
   }
 
   function showQuestion(imageNo) {
+    imagesArray.push(imageNo);
     let artist = images[imageNo].author;
     questionElement.innerText = `Which one is ${artist}'s painting?`;
-    // imagesArray.push(imageNo);
     let randomPaintings = Array.from({length: 3}, () => Math.floor(Math.random() * 240));
-    // painting.style.backgroundImage = `url(./images/square/${imageNo}.jpg)`;
-    // let randomPaintings = [];
     randomPaintings.push(imageNo);
-    // randomEntries.forEach((entry, index) => {   
-    //   if (entry.author === images[imageNo].author) {
-    //     randomArtists.push(images[index + Math.random() * 240]);
-    //     // console.log('in if: ' + entry.author);
-    //   } else {
-    //     // console.log('in else: ' + images[entry].author);
-    //     randomPaintings.push(images[entry].author);
-    //   }
-    // })
-    // console.log(randomArtists);
     randomPaintings.sort(() => Math.random() - 0.5);
-    console.log('randomPaintings is:' + randomPaintings);
 
-    randomPaintings.forEach((imageNumber, index) => {
-      console.log('imageNumber is: '+ imageNumber);
+    randomPaintings.forEach((imageNumber) => {
       const questionPainting = document.createElement('div');
-      let paintingNum = imageNumber.toString();
-      console.log('paintingNum is: ' + paintingNum);
+      // let paintingNum = imageNumber.toString();
       questionPainting.style.backgroundImage = `url(./images/square/${imageNumber}.jpg)`;
       questionPainting.classList.add('four-paintings');
       if (imageNumber === imageNo) {
-        questionPainting.dataset.correct = questionPainting.correct;
+        questionPainting.dataset.correct = imageNumber.correct;
       }
       questionPainting.addEventListener('click', selectAnswer);
       answerButtonsElement.appendChild(questionPainting);
@@ -123,18 +101,13 @@ function playArtistRound() {
   }
 
   function selectAnswer(event) {
-    // console.log('event is '+ event);
     const selectedButton = event.target;
-    // console.log('selectedButton inner text is: ' + selectedButton.innerText);
     const correct = selectedButton.dataset.correct;
-    // console.log('correct is: ' + correct);
     Array.from(answerButtonsElement.children).forEach(button => {
       setStatusClass(button, button.dataset.correct);
-      // console.log('setStatusClass(button, button.dataset.correct) is :' + setStatusClass(button, button.dataset.correct));
     })
     
     if (selectedButton.classList.contains("correct")) {
-      // console.log('selectedButton.classList is: ' + selectedButton.classList);
       if (localStorage.getItem('volume') != '0') {
         correctSound.play();
       }
@@ -149,6 +122,7 @@ function playArtistRound() {
     }
     
     if (categoryImages.length > currentQuestionIndex + 1) {
+      
       nextButton.classList.remove('hide');
     } else {
       let endRoundMessage = `You finished round ${roundNo} with score ${score}`;     
@@ -184,7 +158,7 @@ function playArtistRound() {
   function endRound() {
     
     const round = localStorage.getItem('roundNo');
-    const formattedRound = ('0' + round).slice(-2);
+    const formattedRound = 'artist-' + ('0' + round).slice(-2);
     const category = document.getElementById(formattedRound);
     if (category.childElementCount > 0) {
       category.removeChild(category.lastChild);
@@ -215,9 +189,9 @@ function playArtistRound() {
   }
 
   function showRoundResults() {
-    const roundNoSpan = document.querySelector('.round-number');
-    const gamer = document.getElementById('gamer');
-    const scoreSpan = document.getElementById('round-score');
+    const roundNoSpan = document.querySelector('.artist-round-number');
+    const gamer = document.getElementById('artist-gamer');
+    const scoreSpan = document.getElementById('artist-round-score');
 
     roundNoSpan.innerHTML = roundNo;
     if (localStorage.getItem('userName')) {

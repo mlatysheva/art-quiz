@@ -44,12 +44,12 @@ body {
   }
 }
 
-body.correct {
+/* body.correct {
   --hue: var(--hue-wrong);
 }
 body.wrong {
   --hue: var(--hue-wrong);
-}
+} */
 
 main {
   width: 100%;
@@ -504,7 +504,7 @@ input:checked + .slider:before {
   }
 }
 
-.painting-round {
+.painting-round, .artist-round {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -641,6 +641,12 @@ input:checked + .slider:before {
 .btn.wrong {
   background-color: darkred;
 }
+div.wrong {
+  filter: grayscale();
+}
+div.correct {
+  box-shadow: 10px 10px green;
+}
 
 .start-btn, .next-btn, .score-btn, .categories-btn {
   padding: 10px 20px;
@@ -680,7 +686,7 @@ input:checked + .slider:before {
   background-repeat: no-repeat;
 }
 
-/* Score page */
+/* Paintings Score page */
 
 .score-page {
   padding-top: 2rem; 
@@ -689,6 +695,18 @@ input:checked + .slider:before {
 
 @media (min-width: 1100px) {
   .score-page {
+    width: 80vw;
+  }
+}
+
+/* Artists Score page */
+.artist-score-page {
+  padding-top: 2rem; 
+  margin: 1rem auto;
+}
+
+@media (min-width: 1100px) {
+  .artist-score-page {
     width: 80vw;
   }
 }
@@ -720,7 +738,7 @@ input:checked + .slider:before {
 .round-number {
   padding: 0 1rem;
 }
-#round-score {
+#round-score, #artist-round-score {
   padding-left: 1rem;
   padding-right: 0.3rem;
 }
