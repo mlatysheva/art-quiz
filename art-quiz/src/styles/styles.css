@@ -641,10 +641,10 @@ input:checked + .slider:before {
 .btn.wrong {
   background-color: darkred;
 }
-div.wrong {
+.four-paintings.wrong {
   filter: grayscale();
 }
-div.correct {
+.four-paintings.correct {
   box-shadow: 10px 10px green;
 }
 
