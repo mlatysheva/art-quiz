@@ -12,14 +12,14 @@
 }
 html {
   width: 100%;
-  /* height: 100; */
+  height: 100vh;
   font-size: 14pt;
 }
 body {
   /* width: 100vw;
   height: 100vh; */
-  width: 100;
-  height: 100%;
+  /* width: 100;
+  height: 100%; */
   padding: 0;
   margin: 0;
   color: white;
@@ -553,7 +553,7 @@ input:checked + .slider:before {
   margin-top: 1rem;
 }
 
-#question-container {  
+#question-container, #artist-question-container {  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -561,6 +561,12 @@ input:checked + .slider:before {
   width: 100%;  
   align-self: center;
   justify-content: center;
+}
+
+@media (max-width: 360px) {  
+  #question {
+    margin-top: 2rem;
+  }
 }
 
 @media (min-width: 900px) {  
@@ -577,6 +583,7 @@ input:checked + .slider:before {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  box-shadow: 0 0 10px 4px;
 }
 
 @media (min-width: 600px) {
@@ -586,7 +593,7 @@ input:checked + .slider:before {
   }
 }
 
-.btn-grid {
+.btn-grid, .artist-btn-grid {
   width: 100%;
   display: grid;
   grid-template-columns: 45% 45%;
@@ -595,6 +602,10 @@ input:checked + .slider:before {
   justify-items: center;
   justify-content: center;
   align-items: center;
+}
+
+.artist-btn-grid {
+  width: 80%; 
 }
 
 .btn {
@@ -641,11 +652,22 @@ input:checked + .slider:before {
 .btn.wrong {
   background-color: darkred;
 }
+
+/* Artists question page */
+
+#artist-question {
+  margin: 1rem auto;
+}
+#artist-answer-buttons {
+  gap: 30px;
+}
+
 .four-paintings.wrong {
-  filter: grayscale();
+  /* filter: grayscale(); */
+  box-shadow: 0 0 15px red;
 }
 .four-paintings.correct {
-  box-shadow: 10px 10px green;
+  box-shadow: 0 0 30px green;
 }
 
 .start-btn, .next-btn, .score-btn, .categories-btn {
@@ -684,6 +706,17 @@ input:checked + .slider:before {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  box-shadow: 0 0 10px 2px;
+}
+
+@media (max-width: 360px) {
+  .four-paintings {
+    width: 130px;
+    height: 130px;
+  }
+  #artist-question {
+    margin-top: 2rem;
+  }
 }
 
 /* Paintings Score page */
