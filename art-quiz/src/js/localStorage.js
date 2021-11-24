@@ -13,7 +13,6 @@ function localStorageSettings() {
     localStorage.setItem('seconds', seconds.value);
   }
   saveBtn.addEventListener('click', setLocalStorage);
-  // window.addEventListener('beforeunload', setLocalStorage);
   resetBtn.addEventListener('click', clearSettings);
 
   function getLocalStorage() {
@@ -37,9 +36,5 @@ function localStorageSettings() {
   }
 }
 
-function localStorageGame() {
-  
-  
-}
 
-export { localStorageSettings, localStorageGame  }
+export { localStorageSettings }

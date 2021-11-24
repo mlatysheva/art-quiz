@@ -20,7 +20,8 @@
         <h1 class="quiz-title">Art Quiz</h1>
         <h2 class="select-category small-font">Select category:</h2>
         <button data-page="paintings-page" class="page-button">Paintings</button>
-        <button data-page="artists-page" class="page-button">Artists</button>        
+        <button data-page="artists-page" class="page-button">Artists</button> 
+             
         <div class="footer">
           <div class="rss-logo"></div>
           <div class="author">App developer: Maria Latysheva</div>
@@ -91,7 +92,7 @@
           <div id="12" class="painting-round12 painting-round round">12</div>
         </div>
     
-        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed page-button"></button>
+        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav left-btn bottom-fixed page-button"></button>
         <button data-page="score-page" title="Score" class="nav-btn score-btn-nav bottom-fixed centered-btn page-button"></button> 
         <button data-page="artists-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button>      
       </div>
@@ -116,7 +117,7 @@
         <button data-page="paintings-page" id="categories-btn" class="categories-btn btn page-button hide">Continue</button>
         <button data-page="score-page" id="score-btn" class="score-btn btn page-button hide">Score</button>
         
-        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed left-btn page-button"></button>
+        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav left-btn bottom-fixed page-button"></button>
         <button data-page="paintings-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button> 
       </div>
 
@@ -128,7 +129,7 @@
         <div id="questions-played" class="paintings-shown-grid categories-grid">
         </div>
         
-        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed page-button"></button>
+        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav left-btn bottom-fixed page-button"></button>
         <button data-page="paintings-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button>  
       </div>
 
@@ -153,7 +154,7 @@
           <div id="artist-12" class="artist-round12 artist-round round">12</div>
         </div>
     
-        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed page-button"></button>
+        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav left-btn bottom-fixed page-button"></button>
         <button data-page="artist-score-page" title="Score" class="nav-btn score-btn-nav bottom-fixed centered-btn page-button"></button> 
         <button data-page="paintings-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button>     
       </div>
@@ -177,7 +178,7 @@
         <button data-page="artists-page" id="artist-categories-btn" class="categories-btn btn page-button hide">Continue</button>
         <button data-page="artist-score-page" id="artist-score-btn" class="score-btn btn page-button hide">Score</button>
         
-        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed left-btn page-button"></button>
+        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav left-btn bottom-fixed page-button"></button>
         <button data-page="artists-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button> 
       </div>
 
@@ -189,8 +190,25 @@
         <div id="artist-questions-played" class="paintings-shown-grid categories-grid">
         </div>
         
-        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav bottom-fixed page-button"></button>
+        <button data-page="main-screen" title="Home" class="nav-btn home-btn-nav left-btn bottom-fixed page-button"></button>
         <button data-page="artists-page" title="Categories" class="nav-btn rounds-btn-nav bottom-fixed right-btn page-button"></button>  
+      </div>
+
+      <!-- Modal window -->
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="modal-wrapper">
+            <div id="correct-icon"></div>
+            <div id="modal-painting">Painting</div>
+            <div id="modal-title">Title</div>
+            <div id="modal-author">Author</div>
+            <div id="modal-year">Year</div>
+            <button class= "btn" id="modal-next-btn">Continue</button>
+          </div>
+        </div>
       </div>
 
     </main>

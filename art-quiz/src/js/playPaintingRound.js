@@ -1,4 +1,5 @@
 import { images } from "./imagesEng.js";
+import { showModalWindow } from "./modalWindow.js";
 
 function playPaintingRound() {
   const startButton = document.getElementById('start-btn');
@@ -20,6 +21,8 @@ function playPaintingRound() {
   const attentionQuestion = new Audio('./sounds/attentionQuestion.mp3');
   const attentionCorrectAnswer = new Audio('./sounds/attentionCorrectAnswer.mp3');
   const endOfRound = new Audio('./sounds/endOfRound.mp3');
+
+  let correctImageNo;
   
   if (localStorage.getItem('gameResults')) {
     localStorage.removeItem('gameResults');
@@ -37,8 +40,10 @@ function playPaintingRound() {
   let categoryImages, currentQuestionIndex, roundNo;
 
   nextButton.addEventListener('click', () => {
+    showModalWindow(correctImageNo);
     currentQuestionIndex++;
-    setNextQuestion((roundNo - 1) * 10 + currentQuestionIndex);
+    correctImageNo = (roundNo - 1) * 10 + currentQuestionIndex;
+    setNextQuestion(correctImageNo);
   })
 
   function startGame() {
@@ -58,14 +63,12 @@ function playPaintingRound() {
     categoriesButton.classList.add('hide');
     endMessageDiv.classList.add('hide');
     paintingsRound.classList.remove('hide');
-    // console.log(roundNo);
     categoryImages = images.slice((roundNo - 1)*10, (roundNo - 1) * 10 + 10);
-    // console.log(categoryImages);
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide');
-    // console.log(`Image No. in setNextQuestion will be : ${(roundNo - 1) * 10 + currentQuestionIndex}`);
-    setNextQuestion((roundNo - 1) * 10 + currentQuestionIndex);
-    if (localStorage.getItem('volume') != '0') {
+    correctImageNo = (roundNo - 1) * 10 + currentQuestionIndex
+    setNextQuestion(correctImageNo);
+    if (parseInt(localStorage.getItem('volume')) > 4) {
       attentionQuestion.play();
     }    
   }
@@ -77,30 +80,25 @@ function playPaintingRound() {
 
   function showQuestion(imageNo) {
     questionElement.innerText = 'Who painted this painting?';
-    // console.log('Image number is : ' + imageNo);
     imagesArray.push(imageNo);
     painting.style.backgroundImage = `url(./images/square/${imageNo}.jpg)`;
     let randomEntries = Array.from({length: 3}, () => Math.floor(Math.random() * 240));
-    // console.log(randomEntries);
     let randomArtists = [];
     randomArtists.push(images[imageNo].author);
     randomEntries.forEach((entry, index) => {   
       if (entry.author === images[imageNo].author) {
         randomArtists.push(images[index + Math.random() * 240]);
-        // console.log('in if: ' + entry.author);
       } else {
-        // console.log('in else: ' + images[entry].author);
         randomArtists.push(images[entry].author);
       }
     })
-    // console.log(randomArtists);
     randomArtists.sort(() => Math.random() - 0.5);
-    // console.log(randomArtists);
 
     randomArtists.forEach(artist => {
       const button = document.createElement('button');
       button.innerText = artist;
       button.classList.add('btn');
+      button.classList.add('equal-height');
       if (artist === images[imageNo].author) {
         button.dataset.correct = artist.correct;
       }
@@ -118,26 +116,21 @@ function playPaintingRound() {
   }
 
   function selectAnswer(event) {
-    // console.log('event is '+ event);
     const selectedButton = event.target;
-    // console.log('selectedButton inner text is: ' + selectedButton.innerText);
     const correct = selectedButton.dataset.correct;
-    // console.log('correct is: ' + correct);
     Array.from(answerButtonsElement.children).forEach(button => {
       setStatusClass(button, button.dataset.correct);
-      // console.log('setStatusClass(button, button.dataset.correct) is :' + setStatusClass(button, button.dataset.correct));
     })
     
     if (selectedButton.classList.contains("correct")) {
-      // console.log('selectedButton.classList is: ' + selectedButton.classList);
-      if (localStorage.getItem('volume') != '0') {
+      if (parseInt(localStorage.getItem('volume')) > 3) {
         correctSound.play();
       }
       score++;
       answeredQuestions.push(1);
     }
     else {
-      if (localStorage.getItem('volume') != '0') {
+      if (parseInt(localStorage.getItem('volume')) > 3) {
         wrongSound.play();
       }
       answeredQuestions.push(0);
@@ -156,7 +149,7 @@ function playPaintingRound() {
       categoriesButton.classList.add('inline-block');
       endRound();
       scoreButton.addEventListener('click', showRoundResults);
-      if (localStorage.getItem('volume') != '0') {
+      if (parseInt(localStorage.getItem('volume')) > 3) {
         endOfRound.play();
       }
     }
@@ -220,7 +213,7 @@ function playPaintingRound() {
     }
     scoreSpan.innerText = `${score} / 10`;
 
-    if (localStorage.getItem('volume') != '0') {
+    if (parseInt(localStorage.getItem('volume')) > 4) {
       attentionCorrectAnswer.play();
     }    
 
@@ -239,8 +232,6 @@ function playPaintingRound() {
         if (answersArray[index] === '0') {          
           button.style.filter = 'grayscale(100%)';
         }
-        
-        // button.addEventListener('click', showModalWindow);
         questionsPlayed.appendChild(button);
       })
       

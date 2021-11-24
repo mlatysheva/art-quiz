@@ -1,8 +1,10 @@
 import { images } from "./imagesEng.js";
+import { showModalWindow } from "./modalWindow.js"
 
 function playArtistRound() {
   const startButton = document.getElementById('artist-start-btn');
   const nextButton = document.getElementById('artist-next-btn');
+  const modalNextButton = document.getElementById('modal-next-btn');
   const scoreButton = document.getElementById('artist-score-btn');
   const categoriesButton = document.getElementById('artist-categories-btn');
   const questionContainerElement = document.getElementById('artist-question-container');
@@ -27,6 +29,7 @@ function playArtistRound() {
   let score;
   let answeredQuestions;
   let imagesArray;
+  let correctPaintingNo;
   let gameResults = JSON.parse(localStorage.getItem('gameResults')) || [];
 
   localStorage.removeItem('gameResults');
@@ -36,8 +39,10 @@ function playArtistRound() {
   let categoryImages, currentQuestionIndex, roundNo;
 
   nextButton.addEventListener('click', () => {
+    showModalWindow(correctPaintingNo);
     currentQuestionIndex++;
-    setNextQuestion((roundNo - 1) * 10 + 120 + currentQuestionIndex);
+    correctPaintingNo = (roundNo - 1) * 10 + 120 + currentQuestionIndex;
+    setNextQuestion(correctPaintingNo);
   })
 
   function startGame() {
@@ -60,8 +65,9 @@ function playArtistRound() {
     categoryImages = images.slice((roundNo - 1)*10 + 120, (roundNo - 1) * 10 + 130);
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide');
-    setNextQuestion((roundNo - 1) * 10 + 120 + currentQuestionIndex);
-    if (localStorage.getItem('volume') != '0') {
+    correctPaintingNo = (roundNo - 1) * 10 + 120 + currentQuestionIndex;
+    setNextQuestion(correctPaintingNo);
+    if (parseInt(localStorage.getItem('volume')) > 4) {
       attentionQuestion.play();
     }    
   }
@@ -81,7 +87,6 @@ function playArtistRound() {
 
     randomPaintings.forEach((imageNumber) => {
       const questionPainting = document.createElement('div');
-      // let paintingNum = imageNumber.toString();
       questionPainting.style.backgroundImage = `url(./images/square/${imageNumber}.jpg)`;
       questionPainting.classList.add('four-paintings');
       if (imageNumber === imageNo) {
@@ -108,14 +113,14 @@ function playArtistRound() {
     })
     
     if (selectedButton.classList.contains("correct")) {
-      if (localStorage.getItem('volume') != '0') {
+      if (parseInt(localStorage.getItem('volume')) > 4) {
         correctSound.play();
       }
       score++;
       answeredQuestions.push(1);
     }
     else {
-      if (localStorage.getItem('volume') != '0') {
+      if (parseInt(localStorage.getItem('volume')) > 4) {
         wrongSound.play();
       }
       answeredQuestions.push(0);
@@ -135,7 +140,7 @@ function playArtistRound() {
       categoriesButton.classList.add('inline-block');
       endRound();
       scoreButton.addEventListener('click', showRoundResults);
-      if (localStorage.getItem('volume') != '0') {
+      if (parseInt(localStorage.getItem('volume')) > 3) {
         endOfRound.play();
       }
     }
@@ -199,7 +204,7 @@ function playArtistRound() {
     }
     scoreSpan.innerText = `${score} / 10`;
 
-    if (localStorage.getItem('volume') != '0') {
+    if (parseInt(localStorage.getItem('volume')) > 4) {
       attentionCorrectAnswer.play();
     }    
 
@@ -219,7 +224,6 @@ function playArtistRound() {
           button.style.filter = 'grayscale(100%)';
         }
         
-        // button.addEventListener('click', showModalWindow);
         questionsPlayed.appendChild(button);
       })
       
