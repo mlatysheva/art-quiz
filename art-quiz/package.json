@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve --env development",
     "build": "webpack",
-    "deploy": "gh-pages -d dist -e art-quiz --message 'fix: adjust deploy'"
+    "deploy": "gh-pages -d dist --message 'fix: adjust deploy'"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
